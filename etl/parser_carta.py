@@ -16,6 +16,43 @@ DB_PORT = os.getenv("DB_PORT", "5432")
 
 PASTA_PDFS = "./cartas_pdf"
 
+# 🚫 LISTA NEGRA EXPANDIDA: Blindagem total contra textos institucionais
+TERMOS_IGNORADOS = [
+    "quem pode utilizar", 
+    "gestor municipal", 
+    "cidades", 
+    "etapas para a realização",
+    "documentação necessária",
+    "o que é?",
+    "o cadastro ambiental",
+    "o cau também conecta",
+    "isso incentiva o uso",
+    "qualidade e tamanho",
+    "qualquer pessoa por meio",
+    "etapa 1",
+    "etapa 2",
+    "acesse o sistema pelo site",
+    "para android",
+    "para ios",
+    "canais de prestação",
+    "aplicativo móvel",
+    "e-mail:",
+    "telefone:",
+    "tempo de duração",
+    "atendimento imediato",
+    "caso seja gestor",
+    "por motivo de segurança",
+    "importante:",
+    "este serviço é voltado",
+    "para realizar o cadastro",
+    "solicitante de refúgio:",
+    "a primeira etapa é",
+    "clique aqui se você",
+    "web: inscrever-se",
+    "avaliação: sem avaliação",
+    "por meio do acesso externo"
+]
+
 def validar_url(url):
     """Testa se a URL existe de verdade e detecta o Soft 404 (páginas de erro disfarçadas)."""
     try:
@@ -74,8 +111,14 @@ def extrair_servicos_pdf(caminho_pdf, id_orgao):
             if len(nome_servico) < 5:
                 continue
 
+            # 🎯 NOVO FILTRO DE QUALIDADE DE DADOS (Aqui entra a mágica!)
+            nome_servico_lower = nome_servico.lower()
+            if any(termo in nome_servico_lower for termo in TERMOS_IGNORADOS):
+                print(f"⏩ Texto ignorado por segurança (Filtro de Qualidade): {nome_servico}")
+                continue # Pula esta linha e vai direto para a próxima do PDF
+
             # Geração do slug para tentar o Link Direto
-            slug = nome_servico.lower()
+            slug = nome_servico_lower
             slug = slug.replace('é', 'e').replace('á','a').replace('ã','a').replace('ç','c').replace('ó','o').replace('õ','o').replace('í','i').replace('ú','u')
             slug = padrao_caracteres_especiais.sub('', slug)
             slug = padrao_multiplos_espacos.sub('-', slug)
