@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  postgres_staging:
+    image: postgres:15-alpine
+    container_name: postgres_staging_gov
+    restart: always
+    environment:
+      POSTGRES_DB: gov_staging
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespassword
+    ports:
+      - "5435:5432" # Mapeia a porta 6543 da sua máquina para a 5432 do container (evita conflitos locais)
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
