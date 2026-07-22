@@ -12,7 +12,7 @@ DB_HOST = os.getenv("DB_HOST", "").strip()
 DB_NAME = os.getenv("DB_NAME", "").strip()
 DB_USER = os.getenv("DB_USER", "").strip()
 DB_PASS = os.getenv("DB_PASS", "").strip()
-DB_PORT = os.getenv("DB_PORT", "5432").strip()
+DB_PORT = os.getenv("DB_PORT", "6543").strip()
 
 PASTA_PDFS = "./cartas_pdf"
 
