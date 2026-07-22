@@ -58,4 +58,4 @@ O projeto encontra-se em desenvolvimento ativo. As seguintes etapas e funcionali
 
 * [ ] **Ambiente de Staging com Docker:** Configuração de um container Docker rodando PostgreSQL local para simular o ambiente de produção, testes de integração e rotinas de backup.
 * [ ] **Construção do Dashboard (Power BI):** Desenvolvimento da camada de visualização de dados para expor os indicadores de conformidade de acessibilidade e o ranking dos ministérios.
-* [ ] **Ingestão de Dados de Satisfação (Métrica de Negócio):** Implementação do módulo de raspagem/coleta das notas de avaliação (1 a 5 estrelas) diretamente do portal Gov.br para viabilizar o cruzamento de dados entre a qualidade técnica (e-MAG) e a percepção do cidadão.
+* [X] **Ingestão de Dados de Satisfação (Métrica de Negócio):** Implementação do módulo de raspagem/coleta das notas de avaliação (1 a 5 estrelas) diretamente do portal Gov.br para viabilizar o cruzamento de dados entre a qualidade técnica (e-MAG) e a percepção do cidadão.
